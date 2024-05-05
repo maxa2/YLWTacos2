@@ -17,8 +17,18 @@ export class HomePageComponent {
   }
 
 
-  ngOnInit(){
-    let elements = this.document.getElementById('mobile-map');
+  ngAfterViewInit(){
+    let mobileMap = this.document.getElementsByClassName('mobile') as HTMLCollectionOf<HTMLElement>;
+    let desktopMap = this.document.getElementsByClassName('desktop')as HTMLCollectionOf<HTMLElement>;;
+    console.log(this.deviceService.getDeviceInfo());
+    if(this.deviceService.isMobile()){
+      console.log('mobile');
+      mobileMap[0].style.display = "block";
+      
+    }else{
+      console.log('desktop');
+      desktopMap[0].style.display="block";
+    }
   }
 
 }
